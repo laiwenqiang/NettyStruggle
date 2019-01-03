@@ -25,10 +25,11 @@ public class EchoServer {
     }
 
     public void start() {
-        EventLoopGroup group = new NioEventLoopGroup();
+        EventLoopGroup boss = new NioEventLoopGroup();
+        EventLoopGroup worker = new NioEventLoopGroup();
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.group(group)
+            bootstrap.group(boss, worker)
                     .channel(NioServerSocketChannel.class)
                     .localAddress(new InetSocketAddress(port))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
@@ -44,7 +45,8 @@ public class EchoServer {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            group.shutdownGracefully();
+            boss.shutdownGracefully();
+            worker.shutdownGracefully();
         }
 
 
