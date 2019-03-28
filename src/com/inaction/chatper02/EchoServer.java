@@ -1,5 +1,8 @@
 package com.inaction.chatper02;
 
+import com.inaction.chatper02.handler.InboundHandlerA;
+import com.inaction.chatper02.handler.InboundHandlerB;
+import com.inaction.chatper02.handler.InboundHandlerC;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -36,8 +39,11 @@ public class EchoServer {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             socketChannel.pipeline()
-                                    .addLast(new EchoServerHandler())
-                                    .addLast(new RequestController());
+                                    .addLast(new InboundHandlerA())
+                                    .addLast(new InboundHandlerB())
+                                    .addLast(new InboundHandlerC());
+//                                    .addLast(new EchoServerHandler())
+//                                    .addLast(new RequestController());
                         }
                     });
             ChannelFuture future = bootstrap.bind().sync();
