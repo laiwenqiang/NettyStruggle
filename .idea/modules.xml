@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NettyStruggle.iml" filepath="$PROJECT_DIR$/NettyStruggle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../coding/coding.iml" filepath="$PROJECT_DIR$/../coding/coding.iml" />
     </modules>
   </component>
 </project>
